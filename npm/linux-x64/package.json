@@ -1,12 +1,12 @@
 {
-  "name": "@img/sharp-libvips-linux-x64",
+  "name": "@divriots/sharp-libvips-linux-x64",
   "version": "1.2.4",
-  "description": "Prebuilt libvips and dependencies for use with sharp on Linux (glibc) x64",
-  "author": "Lovell Fuller <npm@lovell.info>",
-  "homepage": "https://sharp.pixelplumbing.com",
+  "description": "Prebuilt libvips with 10-bit AVIF support for use with sharp on Linux (glibc) x64",
+  "author": "divriots",
+  "homepage": "https://github.com/divriots/sharp-libvips",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lovell/sharp-libvips.git",
+    "url": "git+https://github.com/divriots/sharp-libvips.git",
     "directory": "npm/linux-x64"
   },
   "license": "LGPL-3.0-or-later",
