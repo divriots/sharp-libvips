@@ -1,7 +1,7 @@
 {
   "name": "@divriots/sharp-libvips-linux-x64",
-  "version": "1.2.4",
-  "description": "Prebuilt libvips with 10-bit AVIF support for use with sharp on Linux (glibc) x64",
+  "version": "1.2.4-divriots.2",
+  "description": "Prebuilt libvips with 10-bit AVIF, HEIC, JPEG 2000 and JPEG XL support for use with sharp on Linux (glibc) x64",
   "author": "divriots",
   "homepage": "https://github.com/divriots/sharp-libvips",
   "repository": {
