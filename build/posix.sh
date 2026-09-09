@@ -405,6 +405,11 @@ CFLAGS="${CFLAGS} -O3" cmake -G"Unix Makefiles" \
   -DBUILD_SHARED_LIBS=FALSE -DBUILD_STATIC_LIBS=ON -DBUILD_CODEC=OFF -DBUILD_TESTING=OFF
 make install/strip
 
+# openjpeg, libjxl and libde265 emit "-l-lpthread" on Linux (CMake's thread flag
+# is already "-lpthread" there), which breaks the static vips-cpp link.
+sed -i'.bak' 's/-l-lpthread/-lpthread/g' ${TARGET}/lib/pkgconfig/*.pc
+rm -f ${TARGET}/lib/pkgconfig/*.bak
+
 mkdir ${DEPS}/vips
 $CURL https://github.com/libvips/libvips/releases/download/v${VERSION_VIPS}/vips-$(without_prerelease $VERSION_VIPS).tar.xz | tar xJC ${DEPS}/vips --strip-components=1
 cd ${DEPS}/vips
