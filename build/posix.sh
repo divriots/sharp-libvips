@@ -407,8 +407,13 @@ make install/strip
 
 # openjpeg, libjxl and libde265 emit "-l-lpthread" on Linux (CMake's thread flag
 # is already "-lpthread" there), which breaks the static vips-cpp link.
-sed -i'.bak' 's/-l-lpthread/-lpthread/g' ${TARGET}/lib/pkgconfig/*.pc
-rm -f ${TARGET}/lib/pkgconfig/*.bak
+# Regular files only: BSD sed can't edit in place through a symlink (libpng.pc).
+for pc in ${TARGET}/lib/pkgconfig/*.pc; do
+  if [ -f "$pc" ] && [ ! -L "$pc" ] && grep -q -- '-l-lpthread' "$pc"; then
+    sed -i'.bak' 's/-l-lpthread/-lpthread/g' "$pc"
+    rm -f "$pc.bak"
+  fi
+done
 
 mkdir ${DEPS}/vips
 $CURL https://github.com/libvips/libvips/releases/download/v${VERSION_VIPS}/vips-$(without_prerelease $VERSION_VIPS).tar.xz | tar xJC ${DEPS}/vips --strip-components=1
